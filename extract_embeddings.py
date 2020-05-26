@@ -40,3 +40,16 @@ knownEmbeddings = []
 knownNames = []
 # initialize the total number of faces processed
 total = 0
+
+# loop over the image paths
+for (i, imagePath) in enumerate(imagePaths):
+    # extract the person name from the image path
+    print("[INFO] processing image {}/{}".format(i + 1,
+                                                 len(imagePaths)))
+    name = imagePath.split(os.path.sep)[-2]
+    # load the image, resize it to have a width of 600 pixels (while
+    # maintaining the aspect ratio), and then grab the image
+    # dimensions
+    image = cv2.imread(imagePath)
+    image = imutils.resize(image, width=600)
+    (h, w) = image.shape[:2]
