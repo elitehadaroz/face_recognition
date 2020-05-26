@@ -62,3 +62,10 @@ for (i, imagePath) in enumerate(imagePaths):
     # faces in the input image
     detector.setInput(imageBlob)
     detections = detector.forward()
+
+    # ensure at least one face was found
+    if len(detections) > 0:
+        # we're making the assumption that each image has only ONE
+        # face, so find the bounding box with the largest probability
+        i = np.argmax(detections[0, 0, :, 2])
+        confidence = detections[0, 0, i, 2]
