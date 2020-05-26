@@ -69,3 +69,18 @@ for (i, imagePath) in enumerate(imagePaths):
         # face, so find the bounding box with the largest probability
         i = np.argmax(detections[0, 0, :, 2])
         confidence = detections[0, 0, i, 2]
+
+        # ensure that the detection with the largest probability also
+        # means our minimum probability test (thus helping filter out
+        # weak detections)
+        if confidence > args["confidence"]:
+            # compute the (x, y)-coordinates of the bounding box for
+            # the face
+            box = detections[0, 0, i, 3:7] * np.array([w, h, w, h])
+            (startX, startY, endX, endY) = box.astype("int")
+            # extract the face ROI and grab the ROI dimensions
+            face = image[startY:endY, startX:endX]
+            (fH, fW) = face.shape[:2]
+            # ensure the face width and height are sufficiently large
+            if fW < 20 or fH < 20:
+                continue
