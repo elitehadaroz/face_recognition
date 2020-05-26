@@ -30,3 +30,13 @@ detector = cv2.dnn.readNetFromCaffe(protoPath, modelPath)
 # load our serialized face embedding model from disk
 print("[INFO] loading face recognizer...")
 embedder = cv2.dnn.readNetFromTorch(args["embedding_model"])
+
+# grab the paths to the input images in our dataset
+print("[INFO] quantifying faces...")
+imagePaths = list(paths.list_images(args["dataset"]))
+# initialize our lists of extracted facial embeddings and
+# corresponding people names
+knownEmbeddings = []
+knownNames = []
+# initialize the total number of faces processed
+total = 0
