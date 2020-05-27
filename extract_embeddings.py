@@ -84,3 +84,16 @@ for (i, imagePath) in enumerate(imagePaths):
             # ensure the face width and height are sufficiently large
             if fW < 20 or fH < 20:
                 continue
+
+            # construct a blob for the face ROI, then pass the blob
+            # through our face embedding model to obtain the 128-d
+            # quantification of the face
+            faceBlob = cv2.dnn.blobFromImage(face, 1.0 / 255,
+                                             (96, 96), (0, 0, 0), swapRB=True, crop=False)
+            embedder.setInput(faceBlob)
+            vec = embedder.forward()
+            # add the name of the person + corresponding face
+            # embedding to their respective lists
+            knownNames.append(name)
+            knownEmbeddings.append(vec.flatten())
+            total += 1
