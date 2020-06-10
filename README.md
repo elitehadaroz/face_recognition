@@ -3,7 +3,7 @@
 ### A openCV face recongintion project
 
 ## Tools & Practices
-|
+|Category|Tool|
 |---|---|
 | Version Control System| git & github |
 | Language | [Python](https://www.python.org/) |
