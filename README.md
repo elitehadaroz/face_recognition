@@ -1,6 +1,7 @@
 # Face Recognition
 
-### A openCV face recongintion project
+## A openCV face recongintion project
+|---|---|
 
 ## Tools & Practices
 |Category|Tool|
