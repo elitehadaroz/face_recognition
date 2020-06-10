@@ -3,6 +3,8 @@
 ### A openCV face recongintion project
 
 ## Tools & Practices
+|||
+|---|---|
 | Version Control System| git & github |
 | Language | [Python](https://www.python.org/) |
 | Open Source | [OpenCV](https://opencv.org/) |
